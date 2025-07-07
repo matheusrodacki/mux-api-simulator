@@ -1,0 +1,42 @@
+{
+  "J02": {
+    "primary": "localhost:3000/j02/primary",
+    "backup": "localhost:3000/j02/backup"
+  },
+  "J04": {
+    "primary": "localhost:3000/j04/primary",
+    "backup": "localhost:3000/j04/backup"
+  },
+  "J06": {
+    "primary": "localhost:3000/j06/primary",
+    "backup": "localhost:3000/j06/backup"
+  },
+  "J08": {
+    "primary": "localhost:3000/j08/primary",
+    "backup": "localhost:3000/j08/backup"
+  },
+  "J10": {
+    "primary": "localhost:3000/j10/primary",
+    "backup": "localhost:3000/j10/backup"
+  },
+  "J12": {
+    "primary": "localhost:3000/j12/primary",
+    "backup": "localhost:3000/j12/backup"
+  },
+  "J14": {
+    "primary": "localhost:3000/j14/primary",
+    "backup": "localhost:3000/j14/backup"
+  },
+  "J16": {
+    "primary": "localhost:3000/j16/primary",
+    "backup": "localhost:3000/j16/backup"
+  },
+  "J18": {
+    "primary": "localhost:3000/j18/primary",
+    "backup": "localhost:3000/j18/backup"
+  },
+  "J20": {
+    "primary": "localhost:3000/j20/primary",
+    "backup": "localhost:3000/j20/backup"
+  }
+}

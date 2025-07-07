@@ -1,0 +1,166 @@
+{
+  "systems": [
+    {
+      "name": "J02",
+      "primary": {
+        "host": "localhost:3000/j02/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j02/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J02_1751474944653",
+      "createdAt": "2025-07-02T16:49:04.653Z",
+      "updatedAt": "2025-07-02T19:07:31.260Z"
+    },
+    {
+      "name": "J04",
+      "primary": {
+        "host": "localhost:3000/j04/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j04/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J04_1751633017203",
+      "createdAt": "2025-07-04T12:43:37.203Z",
+      "updatedAt": "2025-07-04T12:43:37.203Z"
+    },
+    {
+      "name": "J06",
+      "primary": {
+        "host": "localhost:3000/j06/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j06/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J06_1751633200000",
+      "createdAt": "2025-07-04T12:46:40.000Z",
+      "updatedAt": "2025-07-04T12:46:40.000Z"
+    },
+    {
+      "name": "J08",
+      "primary": {
+        "host": "localhost:3000/j08/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j08/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J08_1751633260000",
+      "createdAt": "2025-07-04T12:47:40.000Z",
+      "updatedAt": "2025-07-04T12:47:40.000Z"
+    },
+    {
+      "name": "J10",
+      "primary": {
+        "host": "localhost:3000/j10/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j10/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J10_1751633320000",
+      "createdAt": "2025-07-04T12:48:40.000Z",
+      "updatedAt": "2025-07-04T12:48:40.000Z"
+    },
+    {
+      "name": "J12",
+      "primary": {
+        "host": "localhost:3000/j12/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j12/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J12_1751633380000",
+      "createdAt": "2025-07-04T12:49:40.000Z",
+      "updatedAt": "2025-07-04T12:49:40.000Z"
+    },
+    {
+      "name": "J14",
+      "primary": {
+        "host": "localhost:3000/j14/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j14/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J14_1751633440000",
+      "createdAt": "2025-07-04T12:50:40.000Z",
+      "updatedAt": "2025-07-04T12:50:40.000Z"
+    },
+    {
+      "name": "J16",
+      "primary": {
+        "host": "localhost:3000/j16/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j16/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J16_1751633500000",
+      "createdAt": "2025-07-04T12:51:40.000Z",
+      "updatedAt": "2025-07-04T12:51:40.000Z"
+    },
+    {
+      "name": "J18",
+      "primary": {
+        "host": "localhost:3000/j18/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j18/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J18_1751633560000",
+      "createdAt": "2025-07-04T12:52:40.000Z",
+      "updatedAt": "2025-07-04T12:52:40.000Z"
+    },
+    {
+      "name": "J20",
+      "primary": {
+        "host": "localhost:3000/j20/primary",
+        "username": "admin",
+        "password": "admin"
+      },
+      "backup": {
+        "host": "localhost:3000/j20/backup",
+        "username": "admin",
+        "password": "admin"
+      },
+      "id": "J20_1751633620000",
+      "createdAt": "2025-07-04T12:53:40.000Z",
+      "updatedAt": "2025-07-04T12:53:40.000Z"
+    }
+  ],
+  "exportedAt": "2025-07-04T12:43:46.285Z",
+  "version": "1.0"
+}
