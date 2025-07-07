@@ -1,0 +1,60 @@
+[
+  {
+    "Name": "EMM PID",
+    "DataID": 2,
+    "DataType": "Entitlement Management Message",
+    "PrivateData": "",
+    "MaxBitrate": 700000,
+    "Pid": 192,
+    "CaDescriptors": [
+      { "CasId": "0942", "PrivateData": "00C0", "Description": "" }
+    ],
+    "EmmpdgUID": 5,
+    "UID": 6,
+    "TrafficShaping": false
+  },
+  {
+    "Name": "EMM Nagra",
+    "DataID": 1,
+    "DataType": "Entitlement Management Message",
+    "PrivateData": "",
+    "MaxBitrate": 700000,
+    "Pid": 1025,
+    "CaDescriptors": [
+      { "CasId": "182b", "PrivateData": "0401", "Description": "EMM Nagra" }
+    ],
+    "EmmpdgUID": 60123,
+    "UID": 60124,
+    "TrafficShaping": false
+  },
+  {
+    "Name": "EMM Verimatrix",
+    "DataID": 3,
+    "DataType": "Entitlement Management Message",
+    "PrivateData": "",
+    "MaxBitrate": 200000,
+    "Pid": 1027,
+    "CaDescriptors": [
+      {
+        "CasId": "171A",
+        "PrivateData": "0403",
+        "Description": "Emm Verimatrix"
+      }
+    ],
+    "EmmpdgUID": 69452,
+    "UID": 69453,
+    "TrafficShaping": false
+  },
+  {
+    "Name": "EMM Nagra - TVRO",
+    "DataID": 1,
+    "DataType": "Entitlement Management Message",
+    "PrivateData": "",
+    "MaxBitrate": 200000,
+    "TrafficShaping": false,
+    "Pid": 1026,
+    "CaDescriptors": [],
+    "EmmpdgUID": 84614,
+    "UID": 84615
+  }
+]

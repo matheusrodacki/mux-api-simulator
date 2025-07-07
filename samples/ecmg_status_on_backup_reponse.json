@@ -1,0 +1,8 @@
+{
+  "ecmguid": 8333,
+  "servers": [
+    { "priority": 0, "state": 0 },
+    { "priority": 1, "state": 3 }
+  ],
+  "activeserverpriority": 1
+}

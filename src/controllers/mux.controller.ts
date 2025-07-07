@@ -85,21 +85,6 @@ export class MuxController {
     };
   }
 
-  // Rota agregada para compatibilidade com CA-Monitor
-  @Get(':systemId')
-  async getAggregatedData(@Param('systemId') systemId: string) {
-    const { systemId: system, muxType } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-
-    const psiData = this.dataService.getPsi(system, muxType);
-    const statsData = this.dataService.getStats(system);
-
-    return {
-      psiData,
-      statsData,
-    };
-  }
-
   // ROTAS PARA MUX PRINCIPAL
 
   // Alarmes ativos - MUX PRIMARY
@@ -146,7 +131,7 @@ export class MuxController {
   }
 
   // Lista de outputs - MUX PRIMARY
-  @Get(':systemId/primary/api/v1/outputs')
+  @Get(':systemId/primary/api/v1/mux/outputs')
   async getOutputsPrimary(@Param('systemId') systemId: string) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'primary');
     await this.simulateTimeout();
@@ -154,8 +139,11 @@ export class MuxController {
   }
 
   // Estatísticas - MUX PRIMARY
-  @Get(':systemId/primary/api/v1/stats')
-  async getStatsPrimary(@Param('systemId') systemId: string) {
+  @Get(':systemId/primary/api/v1/mux/outputs/:outputId/stats')
+  async getStatsPrimary(
+    @Param('systemId') systemId: string,
+    @Param('outputId', ParseIntPipe) outputId: number
+  ) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'primary');
     await this.simulateTimeout();
     return this.dataService.getStats(system);
@@ -165,7 +153,7 @@ export class MuxController {
   @Get(':systemId/primary/api/v1/mux/outputs/:outputId/psi')
   async getPsiPrimary(
     @Param('systemId') systemId: string,
-    @Param('outputId', ParseIntPipe) outputId: number,
+    @Param('outputId', ParseIntPipe) outputId: number
   ) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'primary');
     await this.simulateTimeout();
@@ -173,8 +161,11 @@ export class MuxController {
   }
 
   // Dados de scrambling - MUX PRIMARY
-  @Get(':systemId/primary/api/v1/scrambling')
-  async getScramblingPrimary(@Param('systemId') systemId: string) {
+  @Get(':systemId/primary/api/v1/mux/outputs/:outputId/scrambling')
+  async getScramblingPrimary(
+    @Param('systemId') systemId: string,
+    @Param('outputId', ParseIntPipe) outputId: number
+  ) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'primary');
     await this.simulateTimeout();
     return this.dataService.getScrambling(system, muxType);
@@ -251,7 +242,7 @@ export class MuxController {
   }
 
   // Lista de outputs - MUX BACKUP
-  @Get(':systemId/backup/api/v1/outputs')
+  @Get(':systemId/backup/api/v1/mux/outputs')
   async getOutputsBackup(@Param('systemId') systemId: string) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'backup');
     await this.simulateTimeout();
@@ -259,8 +250,11 @@ export class MuxController {
   }
 
   // Estatísticas - MUX BACKUP
-  @Get(':systemId/backup/api/v1/stats')
-  async getStatsBackup(@Param('systemId') systemId: string) {
+  @Get(':systemId/backup/api/v1/mux/outputs/:outputId/stats')
+  async getStatsBackup(
+    @Param('systemId') systemId: string,
+    @Param('outputId', ParseIntPipe) outputId: number
+  ) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'backup');
     await this.simulateTimeout();
     return this.dataService.getStats(system);
@@ -270,7 +264,7 @@ export class MuxController {
   @Get(':systemId/backup/api/v1/mux/outputs/:outputId/psi')
   async getPsiBackup(
     @Param('systemId') systemId: string,
-    @Param('outputId', ParseIntPipe) outputId: number,
+    @Param('outputId', ParseIntPipe) outputId: number
   ) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'backup');
     await this.simulateTimeout();
@@ -278,8 +272,11 @@ export class MuxController {
   }
 
   // Dados de scrambling - MUX BACKUP
-  @Get(':systemId/backup/api/v1/scrambling')
-  async getScramblingBackup(@Param('systemId') systemId: string) {
+  @Get(':systemId/backup/api/v1/mux/outputs/:outputId/scrambling')
+  async getScramblingBackup(
+    @Param('systemId') systemId: string,
+    @Param('outputId', ParseIntPipe) outputId: number
+  ) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'backup');
     await this.simulateTimeout();
     return this.dataService.getScrambling(system, muxType);
@@ -308,86 +305,6 @@ export class MuxController {
       timestamp: new Date().toISOString(),
       uptime: process.uptime(),
     };
-  }
-
-  // ROTAS ANTIGAS (MANTIDAS PARA COMPATIBILIDADE) - redirecionam para PRIMARY
-
-  // Alarmes ativos - compatibilidade
-  @Get(':systemId/api/v1/alarms/active')
-  async getActiveAlarms(@Param('systemId') systemId: string) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getActiveAlarms(system, 'primary');
-  }
-
-  // Contagem de alarmes ativos - compatibilidade
-  @Get(':systemId/api/v1/alarms/active/count')
-  async getActiveAlarmsCount(@Param('systemId') systemId: string) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getActiveAlarmsCount(system, 'primary');
-  }
-
-  // Histórico de alarmes - compatibilidade
-  @Get(':systemId/api/v1/alarms/history')
-  async getAlarmHistory(@Param('systemId') systemId: string) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getAlarmHistory(system);
-  }
-
-  // Lista de ECMGs - compatibilidade
-  @Get(':systemId/api/v1/ecmgs')
-  async getEcmgs(@Param('systemId') systemId: string) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getEcmgs(system);
-  }
-
-  // Status de ECMG específico - compatibilidade
-  @Get(':systemId/api/v1/ecmg/status/:ecmgUid')
-  async getEcmgStatus(
-    @Param('systemId') systemId: string,
-    @Param('ecmgUid', ParseIntPipe) ecmgUid: number
-  ) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getEcmgStatus(system, ecmgUid);
-  }
-
-  // Lista de outputs - compatibilidade
-  @Get(':systemId/api/v1/outputs')
-  async getOutputs(@Param('systemId') systemId: string) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getOutputs(system, 'primary');
-  }
-
-  // Estatísticas - compatibilidade
-  @Get(':systemId/api/v1/stats')
-  async getStats(@Param('systemId') systemId: string) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getStats(system);
-  }
-
-  // Dados PSI - compatibilidade
-  @Get(':systemId/api/v1/mux/outputs/:outputId/psi')
-  async getPsi(
-    @Param('systemId') systemId: string,
-    @Param('outputId', ParseIntPipe) outputId: number,
-  ) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getPsi(system, 'primary');
-  }
-
-  // Dados de scrambling - compatibilidade
-  @Get(':systemId/api/v1/scrambling')
-  async getScrambling(@Param('systemId') systemId: string) {
-    const { systemId: system } = this.validateMux(systemId, 'primary');
-    await this.simulateTimeout();
-    return this.dataService.getScrambling(system, 'primary');
   }
 
   // Health check - compatibilidade
