@@ -13,6 +13,7 @@ import {
 @Injectable()
 export class DataService {
   private systemData: Record<string, any> = {};
+  private scramblingStartTime: number = Date.now();
 
   constructor() {
     // Gera sistemas J02, J04, J06, J08, J10, J12, J14, J16, J18, J20 com mux principal e backup
@@ -77,6 +78,22 @@ export class DataService {
   // Simula instabilidade ocasional para fins de teste
   private getRandomStatus(): 'online' | 'offline' {
     return Math.random() > 0.1 ? 'online' : 'offline';
+  }
+
+  // Gera bitrate variável a cada request
+  private generateVariableBitrate(baseBitrate: number): number {
+    const variation = 0.1; // ±10% variation
+    const randomFactor = 1 + (Math.random() - 0.5) * 2 * variation;
+    return Math.round(baseBitrate * randomFactor);
+  }
+
+  // Calcula scrambling state baseado no tempo (alterna entre 0 e 1 a cada 30s)
+  private getScramblingState(baseState: number): number {
+    if (baseState === 0) return 0; // Não scrambled permanece 0
+    
+    const elapsed = Date.now() - this.scramblingStartTime;
+    const cycles = Math.floor(elapsed / 30000); // 30 segundos em ms
+    return cycles % 2; // Alterna entre 0 e 1
   }
 
   // Gera dados de alarmes ativos
@@ -304,15 +321,15 @@ export class DataService {
       ],
       cutoffStatusOutputEnabled: true,
       PIDStats: [
-        { pid: 0, bitrate: 7511, scramblingstate: 0 },
-        { pid: 1, bitrate: 3004, scramblingstate: 0 },
-        { pid: 16, bitrate: 28542, scramblingstate: 0 },
-        { pid: 17, bitrate: 392084, scramblingstate: 0 },
-        { pid: 18, bitrate: 560335, scramblingstate: 0 },
-        { pid: 4352, bitrate: 2317957, scramblingstate: 2 },
-        { pid: 4355, bitrate: 199798, scramblingstate: 2 },
-        { pid: 4356, bitrate: 196793, scramblingstate: 2 },
-        { pid: 8191, bitrate: 7407549, scramblingstate: 0 },
+        { pid: 0, bitrate: this.generateVariableBitrate(7511), scramblingstate: this.getScramblingState(0) },
+        { pid: 1, bitrate: this.generateVariableBitrate(3004), scramblingstate: this.getScramblingState(0) },
+        { pid: 16, bitrate: this.generateVariableBitrate(28542), scramblingstate: this.getScramblingState(0) },
+        { pid: 17, bitrate: this.generateVariableBitrate(392084), scramblingstate: this.getScramblingState(0) },
+        { pid: 18, bitrate: this.generateVariableBitrate(560335), scramblingstate: this.getScramblingState(0) },
+        { pid: 4352, bitrate: this.generateVariableBitrate(2317957), scramblingstate: this.getScramblingState(2) },
+        { pid: 4355, bitrate: this.generateVariableBitrate(199798), scramblingstate: this.getScramblingState(2) },
+        { pid: 4356, bitrate: this.generateVariableBitrate(196793), scramblingstate: this.getScramblingState(2) },
+        { pid: 8191, bitrate: this.generateVariableBitrate(7407549), scramblingstate: this.getScramblingState(0) },
       ],
     };
   }
