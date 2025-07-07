@@ -85,6 +85,21 @@ export class MuxController {
     };
   }
 
+  // Rota agregada para compatibilidade com CA-Monitor
+  @Get(':systemId')
+  async getAggregatedData(@Param('systemId') systemId: string) {
+    const { systemId: system, muxType } = this.validateMux(systemId, 'primary');
+    await this.simulateTimeout();
+
+    const psiData = this.dataService.getPsi(system, muxType);
+    const statsData = this.dataService.getStats(system);
+
+    return {
+      psiData,
+      statsData,
+    };
+  }
+
   // ROTAS PARA MUX PRINCIPAL
 
   // Alarmes ativos - MUX PRIMARY
@@ -252,8 +267,11 @@ export class MuxController {
   }
 
   // Dados PSI - MUX BACKUP
-  @Get(':systemId/backup/api/v1/psi')
-  async getPsiBackup(@Param('systemId') systemId: string) {
+  @Get(':systemId/backup/api/v1/mux/outputs/:outputId/psi')
+  async getPsiBackup(
+    @Param('systemId') systemId: string,
+    @Param('outputId', ParseIntPipe) outputId: number,
+  ) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'backup');
     await this.simulateTimeout();
     return this.dataService.getPsi(system, muxType);
@@ -354,8 +372,11 @@ export class MuxController {
   }
 
   // Dados PSI - compatibilidade
-  @Get(':systemId/api/v1/psi')
-  async getPsi(@Param('systemId') systemId: string) {
+  @Get(':systemId/api/v1/mux/outputs/:outputId/psi')
+  async getPsi(
+    @Param('systemId') systemId: string,
+    @Param('outputId', ParseIntPipe) outputId: number,
+  ) {
     const { systemId: system } = this.validateMux(systemId, 'primary');
     await this.simulateTimeout();
     return this.dataService.getPsi(system, 'primary');

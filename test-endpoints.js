@@ -97,7 +97,7 @@ async function testEndpoints() {
       `/api/v1/ecmgs`,
       `/api/v1/outputs`,
       `/api/v1/stats`,
-      `/api/v1/psi`,
+      `/api/v1/mux/outputs/1/psi`,
       `/api/v1/scrambling`,
     ];
 
@@ -123,7 +123,7 @@ async function testEndpoints() {
       `/api/v1/ecmgs`,
       `/api/v1/outputs`,
       `/api/v1/stats`,
-      `/api/v1/psi`,
+      `/api/v1/mux/outputs/1/psi`,
       `/api/v1/scrambling`,
     ];
 
@@ -146,7 +146,7 @@ async function testEndpoints() {
       `/status`,
       `/api/v1/alarms/active`,
       `/api/v1/outputs`,
-      `/api/v1/psi`,
+      `/api/v1/mux/outputs/1/psi`,
     ];
 
     for (const endpoint of compatibilityEndpoints) {
