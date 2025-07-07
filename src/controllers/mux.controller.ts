@@ -44,10 +44,10 @@ export class MuxController {
 
   // Simula timeout ocasional para teste
   private async simulateTimeout() {
-    if (Math.random() < 0.05) {
-      // 5% de chance de timeout
-      await new Promise((resolve) => setTimeout(resolve, 35000)); // 35 segundos
-    }
+    // if (Math.random() < 0.05) {
+    //   // 5% de chance de timeout
+    //   await new Promise((resolve) => setTimeout(resolve, 35000)); // 35 segundos
+    // }
   }
 
   // Lista todos os sistemas disponíveis
@@ -112,7 +112,7 @@ export class MuxController {
   }
 
   // Lista de ECMGs - MUX PRIMARY
-  @Get(':systemId/primary/api/v1/ecmgs')
+  @Get(':systemId/primary/api/v1/mux/cas/ecmgs')
   async getEcmgsPrimary(@Param('systemId') systemId: string) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'primary');
     await this.simulateTimeout();
@@ -120,7 +120,7 @@ export class MuxController {
   }
 
   // Status de ECMG específico - MUX PRIMARY
-  @Get(':systemId/primary/api/v1/ecmg/status/:ecmgUid')
+  @Get(':systemId/primary/api/v1/mux/cas/ecmgs/:ecmgUid/status')
   async getEcmgStatusPrimary(
     @Param('systemId') systemId: string,
     @Param('ecmgUid', ParseIntPipe) ecmgUid: number
@@ -223,7 +223,7 @@ export class MuxController {
   }
 
   // Lista de ECMGs - MUX BACKUP
-  @Get(':systemId/backup/api/v1/ecmgs')
+  @Get(':systemId/backup/api/v1/mux/cas/ecmgs')
   async getEcmgsBackup(@Param('systemId') systemId: string) {
     const { systemId: system, muxType } = this.validateMux(systemId, 'backup');
     await this.simulateTimeout();
@@ -231,7 +231,7 @@ export class MuxController {
   }
 
   // Status de ECMG específico - MUX BACKUP
-  @Get(':systemId/backup/api/v1/ecmg/status/:ecmgUid')
+  @Get(':systemId/backup/api/v1/mux/cas/ecmgs/:ecmgUid/status')
   async getEcmgStatusBackup(
     @Param('systemId') systemId: string,
     @Param('ecmgUid', ParseIntPipe) ecmgUid: number
